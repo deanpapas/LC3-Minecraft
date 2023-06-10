@@ -1,0 +1,40 @@
+(a) Replace each '...' below with the binary representation.
+
+x5020 = 0101000000100000
+x923F = 1001001000111111
+x1261 = 0001001001100001
+x1240 = 0001001001000000
+x1240 = 0001001001000000
+x103F = 0001000000111111
+x03FC = 0000001111111100
+
+(b)
+
+.ORIG x3000
+AND R0, R0, #0
+ADD R0, R0, #7
+NOT R1, R0
+LOOP
+    ADD R1, R1, #1
+    ADD R1, R1, R0
+    ADD R1, R1, R0
+    ADD R0, R0, #-1
+    BRp LOOP
+HALT
+.END
+
+(c-i)
+
+19
+
+(c-ii)
+
+89
+
+(d)
+
+The code is a pattern where after adding 1 to R1 the value R0 is doubled then added to R1.
+The loop is then repeated however many times R0 was initially set to as it is gradually 
+decremented every loop.
+
+It could also be interpreted to calculate, R1 = R0^R0 + (R0-1)

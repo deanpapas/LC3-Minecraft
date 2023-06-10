@@ -1,0 +1,27 @@
+.ORIG x3000
+
+TRAP x31 ; Get Player Tile Pos
+ADD R0, R0, #1
+ADD R1, R1, #-1
+TRAP 0x33 ;Get Input 0 Block
+ADD R4, R3, #0
+ADD R0, R0, #1
+TRAP 0x33 ;Get Input 1 Block
+
+;XOR
+AND R1,R3,R4
+NOT R1,R1
+AND R2,R3,R1
+NOT R2,R2
+AND R1,R4,R1
+NOT R1,R1
+AND R3,R2,R1
+NOT R3,R3
+
+TRAP x31 ; Get Player Tile Pos
+ADD R0, R0, #3
+ADD R1, R1, #-1
+TRAP 0x34 ; Set Answer Tile
+
+HALT
+.END
